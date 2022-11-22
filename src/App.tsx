@@ -1,9 +1,11 @@
+import { Layout } from 'antd';
+
 function App() {
-  return (
-    <div>
-      <p>hello world</p>
-    </div>
-  );
+    return (
+        <div>
+            <Layout style={{ minHeight: '100vh' }}>ff</Layout>
+        </div>
+    );
 }
 
 export default App;
