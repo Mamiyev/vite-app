@@ -6,7 +6,9 @@ import { css } from '@emotion/react';
 
 const { Content, Header, Footer } = Layout;
 
-const Main = () => {
+type IMainProps = {} & React.PropsWithChildren;
+
+const Main: React.FC<IMainProps> = ({ children }) => {
     const [collapsed, setCollapsed] = useState(false);
 
     return (
@@ -17,7 +19,7 @@ const Main = () => {
 
                 <Content style={{ margin: '20px' }}>
                     <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                        Bill is a cat.
+                        {children}
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>Pet project using Vite, Ant design</Footer>
