@@ -1,35 +1,16 @@
 import { Table as AntTable } from 'antd';
 import { TableProps as AntProps } from 'antd';
-import { ColumnsType } from 'antd/es/table';
+import { columns } from './columns';
 
 type ITableProps = {} & AntProps<any>;
 
-type DataType = {
+export type DataType = {
     key: string;
     name: string;
     age: number;
     address: string;
     tags: string[];
 };
-
-const columns: ColumnsType<DataType> = [
-    {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-        render: (text) => <a>{text}</a>,
-    },
-    {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age',
-    },
-    {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address',
-    },
-];
 
 const data: DataType[] = [
     {
