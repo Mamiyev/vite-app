@@ -1,5 +1,6 @@
 import { Table as AntTable } from 'antd';
 import { TableProps as AntProps } from 'antd';
+import useApi from '../../hooks/useApi';
 import { columns } from './columns';
 
 type ITableProps = {} & AntProps<any>;
@@ -7,37 +8,22 @@ type ITableProps = {} & AntProps<any>;
 export type DataType = {
     key: string;
     name: string;
-    age: number;
+    email: string;
     address: string;
-    tags: string[];
 };
 
-const data: DataType[] = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-];
-
 const Table: React.FC<ITableProps> = ({ ...props }) => {
-    return <AntTable columns={columns} dataSource={data} {...props} />;
+    const { data: resp } = useApi('https://jsonplaceholder.typicode.com/users');
+    const modifiedData = resp.map((el: any) => {
+        return {
+            key: el.id.toString(),
+            name: el.name,
+            email: el.email,
+            address: el.address?.street,
+        };
+    });
+
+    return <AntTable columns={columns} dataSource={modifiedData} {...props} />;
 };
 
 export default Table;
