@@ -1,6 +1,6 @@
 import { Table as AntTable } from 'antd';
 import { TableProps as AntProps } from 'antd';
-import useApi from '../../hooks/useApi';
+import useApi from '../../shared/lib/hooks/useApi';
 import { columns } from './columns';
 
 type ITableProps = {} & AntProps<any>;
@@ -13,8 +13,10 @@ export type DataType = {
 };
 
 const Table: React.FC<ITableProps> = ({ ...props }) => {
-    const { data: resp } = useApi('https://jsonplaceholder.typicode.com/users');
-    const modifiedData = resp.map((el: any) => {
+    const { data, loading } = useApi('https://jsonplaceholder.typicode.com/users');
+    console.log('data from ', data);
+
+    const modifiedData = data?.map((el: any) => {
         return {
             key: el.id.toString(),
             name: el.name,

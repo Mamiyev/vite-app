@@ -19,5 +19,5 @@ export const getItem = (
 
 export const items: MenuItem[] = [
     getItem('Пользователи', '1', <PieChartOutlined />),
-    getItem('Файлы', '9', <FileOutlined />),
+    getItem('Заметки', '9', <FileOutlined />),
 ];
